@@ -1,0 +1,77 @@
+@import './base.css';
+
+
+.date-picker-card-container{
+  flex: 1;
+
+}
+
+.date-picker-card{
+    height: fit-content;
+    margin-top: 5px;
+    background-color: white;
+    border: 1.4px var(--grey-brown) solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    padding-inline: 18px;
+    justify-content: space-between;
+}
+
+.date-picker-card .icon{
+    font-size: 16px;
+}
+
+.date-picker-card:hover{
+    background-color: var(--grey-brown-hover);
+    border: 1.4px var(--grey-brown-hover) solid;
+
+}
+
+.inputs-holder{
+    display: flex;
+    gap: 1vw;
+    margin-bottom: 18px;
+}
+
+.input-container.number{
+    flex: none;
+    min-width: 150px;
+}
+
+.input-container{
+    flex: 1;
+}
+
+.input-container .error{
+    margin-left: 5px;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--red);
+}
+
+.input-container input{
+    margin-top: 5px;
+    width: 100%;
+    border: 1.4px var(--grey-brown) solid;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.1vw;
+    padding-block: 0.6vw;
+    padding-inline: 18px;
+    transition: border-color 0.5s;
+}
+
+.input-container input:focus{
+     border: 1.8px var(--primary-color) solid; 
+}
+
+.input-container input.empty{
+    margin-top: 0px;
+    background-color: transparent;
+    pointer-events: none;
+    border: none;
+    
+}

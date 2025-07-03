@@ -1,0 +1,47 @@
+@import './base.css';
+
+.states-holder {
+    gap: 1.6vw;
+    padding: 0.3vw; /* 4.5px → (4.5/15.11) */
+    min-width: 4.3vw; /* 65px → (65/15.11) */
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    font-size: 1.13vw; /* 17px → (17/15.11) */
+}
+
+.states-holder.last{
+    gap: 1vw;
+    justify-content: end;
+}
+
+.states-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 0.99vw; /* 15px → (15/15.11) */
+    gap: 0.79vw; /* 12px → (12/15.11) */
+}
+
+.state-card {
+    background-color: white;
+    padding: 0.3vw 1.19vw; /* 4.5px → 0.3vw, 18px → 1.19vw */
+    min-width: 4.3vw; /* 65px → (65/15.11) */
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 3.31vw; /* 50px → (50/15.11) */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 0.1vw var(--grey-brown) solid; /* 1.5px → 0.1vw */
+}
+
+.state-card:hover {
+    background-color: var(--grey-brown-hover);
+    border: none;
+}
+
+.state-card.active {
+    background-color: var(--primary-color-soft);
+    color: var(--primary-color);
+}

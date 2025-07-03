@@ -1,0 +1,27 @@
+:root {
+  --grey-brown: #eaeaea;
+  --grey-brown-hover: rgb(214, 237, 255);
+  --primary-color: #42abfe;
+  --primary-color-soft: #C5E4FD;
+  --primary-color-disactive: #92ceff;
+  --primary-color-hover: #1e9eff;
+  --sidebar-icon-grey: #C7C7C7;
+  --sidebar-text-grey: #B6B6B6;
+  --sidebar-item-hover : #e6f3ff;
+  --grey-brown-medium: #bdbdbd;
+  --grey-brown-dark: #959595;
+  --grey-hover : #e0e0e0;
+  --grey-dark: rgb(97, 97, 97);
+  --grey-brown-dark-hover: #f2f2f2;
+  --home-background: #ecf2f7;
+  --soft-red: #f8a6b2;
+  --red : #ea4863;
+  --divider-grey : #cad2d7;
+  --yellow : #e7bc3b;
+  --soft-yellow : #fff1b2;
+  --green : #4fbe7f;
+  --soft-green : #bcf6b2;
+  --purple : #be5597;
+  --soft-purple : #f6b2e3;
+  --black-text-canceled: rgb(164, 164, 164);
+}

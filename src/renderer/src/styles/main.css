@@ -1,0 +1,29 @@
+@import './base.css';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Alexandria', sans-serif;
+    border-color: var(--grey-brown);
+}
+
+.dropdown{
+    list-style: none;
+    background-color: white;
+    position: absolute;
+    border: 0.1vw var(--grey-brown) solid;
+    border-radius: 0.53vw;
+}
+
+dialog{
+    background-color: transparent;
+    border-radius: 12px;
+}
+
+dialog[open] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

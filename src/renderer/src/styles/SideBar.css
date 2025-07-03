@@ -1,0 +1,110 @@
+@import './base.css';
+
+
+.side-bar {
+  position: relative;
+  max-width: 11.25vw; /* Already in vw */
+  flex: auto;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: solid var(--grey-brown);
+  border-width: 0.07vw 0 0 0.07vw; /* 1px → 0.07vw */
+  box-shadow: 0 0 0.33vw rgba(0, 0, 0, 0.1); /* 5px → 0.33vw */
+  padding: 2.25vh 0.66vw; /* 18px → 2.25vh, 10px → 0.66vw */
+  transition: all var(--minimize-duration) ease;
+  height: 100vh; /* 800px → 100vh (or adjust as needed) */
+  z-index: 200;
+}
+
+.home-icon {
+  width: 3.97vw; /* 60px → 3.97vw */
+  margin-bottom: 3.13vh; /* 25px → 3.13vh */
+}
+
+.side-bar-full-item {
+  border-radius: 0.99vw; /* 15px → 0.99vw */
+  padding: 1.63vh 0.66vw; /* 13px → 1.63vh, 10px → 0.66vw */
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: 1.75vh; /* 14px → 1.75vh */
+  align-items: center;
+  justify-content: start;
+  gap: 0.66vw; /* 10px → 0.66vw */
+  transition: gap var(--minimize-duration) ease, justify-content var(--minimize-duration) ease;
+}
+
+.side-bar-full-item:hover {
+  background-color: var(--sidebar-item-hover);
+}
+
+.side-bar-full-item.active {
+  background-color: var(--primary-color);
+}
+
+.side-bar-full-item .icon {
+  color: var(--sidebar-icon-grey);
+}
+
+.side-bar-full-item .text {
+  font-weight: 400;
+  font-size: 1.06vw; /* 16px → 1.06vw */
+  color: var(--sidebar-text-grey);
+  transition: font-size var(--minimize-duration) ease;
+}
+
+.side-bar-full-item.active .icon {
+  color: white;
+}
+
+.side-bar-full-item.active .text {
+  color: white;
+}
+
+.side-bar.minmized {
+  max-width: 4.63vw; /* 70px → 4.63vw */
+}
+
+.side-bar.minmized .side-bar-full-item {
+  gap: 0;
+  justify-content: center;
+}
+
+.side-bar.minmized .text {
+  font-size: 0;
+}
+
+.dissmis-sidebar-button {
+  border: var(--grey-brown) 0.07vw solid; /* 1px → 0.07vw */
+  box-shadow: 0.33vw rgba(0, 0, 0, 0.1); /* 5px → 0.33vw */
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 2.2vw; /* Already in vw */
+  left: 100%;
+  padding: 0.88vh; /* 7px → 0.88vh */
+  transform: translateX(-50%);
+  background-color: white;
+  cursor: pointer;
+  transition: 0.15s;
+  z-index: 300;
+}
+
+.dissmis-sidebar-button:hover {
+  background-color: var(--grey-brown-dark-hover);
+}
+
+.dissmis-sidebar-button .icon {
+  color: var(--grey-brown-dark);
+  transform: rotate(180deg);
+  font-size: 0.93vw; /* 14px → 0.93vw */
+  transition: var(--minimize-duration);
+}
+
+.dissmis-sidebar-button .icon.rotate {
+  transform: rotate(0deg);
+}

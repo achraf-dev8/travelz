@@ -1,0 +1,58 @@
+@import './base.css';
+
+.info-card{
+    padding: 18px 20px;
+    border-radius: 14px;
+    background-color: white;
+}
+
+.info-card .info-card-holder{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 36px;
+}
+
+.info-card .info-card-holder:last-child{
+    margin-bottom: 0px;
+}
+
+.info-card-title{
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+}
+
+.info-card .info-row{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.info-card .info-row .group{
+    display: flex;
+    align-items: center;
+}
+
+.info-card .info-row .group.type{
+    gap: 10px;
+    font-size: 17px;
+    color: var(--grey-dark);
+}
+
+.info-card .info-row .group.type .icon{
+    font-size: 15px;
+}
+
+.info-card .info-row .group.info .title{
+    font-size: 18px;
+}
+
+.info-card .info-row .group.info .icon{
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.divider.info{
+    margin-block: 24px;
+}

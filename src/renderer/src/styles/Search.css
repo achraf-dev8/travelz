@@ -1,0 +1,51 @@
+@import './base.css';
+
+.states-holder.locations {
+  align-items: stretch;
+}
+
+.search-field-container {
+  margin-block: 0px;
+  flex: 1;
+  display: flex; /* ensure icon + input align */
+  align-items: center;
+  position: relative;
+  gap: 0.5vw;
+}
+
+.search-field-container input {
+  flex: 1;
+  height: 100%;
+  border: 1.7px var(--grey-brown) solid;
+  padding: 0.6vw 0.8vw;
+  padding-left: 2vw;
+  margin: 0;
+  border-radius: 10px;
+  font-size: 1.1vw;
+  box-sizing: border-box;
+  outline: none;
+  transition: 1s;
+}
+
+.search-field-container input::placeholder {
+  font-size: 1vw;
+  color: var(--grey-brown-dark);
+}
+
+.search-field-container input:focus {
+  border: 2px var(--primary-color) solid;
+}
+
+.search-field-container input:focus  + .search-icon{
+ color: var(--primary-color);
+ font-size: 15px;
+}
+
+.search-icon {
+  font-size: 14px;
+  position: absolute;
+  left: 0.6vw;
+  color: var(--grey-brown-dark);
+  transition: 0.5s;
+}
+

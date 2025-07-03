@@ -1,0 +1,195 @@
+@import './base.css';
+
+:root {
+  --minimize-duration: 0.5s;
+}
+
+.home-screen {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home-area {
+  flex: auto;
+  background-color: var(--home-background);
+  overflow-y: auto;
+}
+
+.home-content {
+  padding: 0.5vh 3vw 1.4vh 3vw; /* Already in vw/vh */
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  height: 0.19vh; /* 1.5px → 0.19vh */
+  background-color: var(--divider-grey);
+  margin-block: 1vh 1.25vh; /* 8px → 1vh, 10px → 1.25vh */
+}
+
+.scale-hover {
+  transition: transform 0.3s;
+}
+
+.scale-hover:hover {
+  transform: scale(1.03);
+}
+
+.scale-hover.active:hover {
+  transform: scale(1);
+}
+
+.add-button {
+    gap: 1.85vw;
+    max-width: 13vw;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    font-weight: 500;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.66vw 1.13vw; /* 10px → 0.66vw, 17px → 1.13vw */
+    border-radius: 0.66vw; /* 10px → (10/15.11) */
+    transition: 0.3s;
+}
+
+.add-button.simple { 
+    color: var(--primary-color);
+    background-color: white;
+    border: 1px var(--primary-color) solid;
+    gap: 1vw;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.add-button.simple.disactive { 
+    opacity: 0.5;
+    cursor: default;
+}
+
+.add-button.simple.disactive:hover { 
+  background-color: white;
+  transform: none;
+}
+
+
+.add-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.add-button.simple:hover {
+    background-color: var(--grey-brown-hover);
+}
+
+.add-button.confirm{
+  padding-inline: 2vw;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.info-confirm-holder{
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+}
+
+.add-button.confirm{
+  max-width: none;
+}
+
+.add-button.confirm.disactive{
+  background-color: var(--primary-color-disactive);
+  cursor: default;
+}
+
+.add-button.confirm.disactive:hover{
+  background-color: var(--primary-color-disactive);
+  transform: scale(1);
+}
+
+.items-added-cards{
+  margin-bottom: 0;
+  transition: 0.5s;
+}
+
+.items-added-cards.not-empty{
+ margin-bottom: 20px;
+}
+
+.items-added-cards .item-added-card{
+    height: fit-content;
+    background-color: white;
+    border: 1.4px var(--grey-brown) solid;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-inline: 18px;
+    justify-content: space-between;
+    font-weight: 500;
+    padding-block: 4px;
+    margin-bottom: 12px;
+    transition: border-color 0.5s;
+    width: 100%;
+}
+
+
+.items-added-cards .item-added-card.sub{
+  width: 90%;
+  margin-left: auto
+}
+
+.items-added-cards .item-added-card:last-child {
+  margin-bottom: 0;
+}
+
+.items-added-cards .item-added-card.selected{
+    border: 1.7px var(--primary-color) solid;
+    color: var(--primary-color);
+}
+
+.items-added-cards .item-added-card .controllers{
+  display: flex;
+  gap: 5px;
+}
+
+.items-added-cards .item-added-card .controllers .delete{
+  color: var(--red);
+  font-size: 20px;
+}
+
+.items-added-cards .item-added-card .controllers .edit{
+  color: var(--primary-color);
+  font-size: 20px;
+}
+
+.icon-container{
+    background-color: transparent;
+    border-radius: 100%;
+    padding: 10px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.icon-container.remove{
+    background-color: transparent;
+    border-radius: 100%;
+    font-size: 18px;
+    height: 80%;
+}
+
+.icon-container.blank{
+  visibility: hidden;
+}
+
+
+
+.icon-container:hover{
+    background-color: var(--grey-brown-hover);
+}
