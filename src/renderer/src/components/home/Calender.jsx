@@ -3,14 +3,19 @@ import "../../styles/Calender.css";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-const Calender = ({ date = "any", close, confirm, maxToday=true }) => {
-  const min = 1
-  const max = 9999
-  const getInitialDate = () => (date === "any" || date === "N/A" ? new Date() : new Date(date));
+const Calender = ({ date = "any", close, confirm, maxToday = true, withTime = false }) => {
+  const min = 1;
+  const max = 9999;
+  console.log(date)
+  const getInitialDate = () =>
+    date === "any" || date === "N/A" ? new Date(new Date().setHours(0, 0, 0, 0)) : new Date(date);
 
   const [disDate, setDisDate] = useState(getInitialDate);
   const [currDate, setCurrDate] = useState(getInitialDate);
   const [inputYear, setInputYear] = useState(disDate.getFullYear());
+
+  const [hour, setHour] = useState('00');
+  const [minute, setMinute] = useState('00');
 
   const setValueCheck = (value) => {
     setInputYear(value);
@@ -19,13 +24,14 @@ const Calender = ({ date = "any", close, confirm, maxToday=true }) => {
     let d = new Date(clampedYear, disDate.getMonth(), 1);
     setDisDate(d);
   };
-  
 
   useEffect(() => {
     const freshDate = getInitialDate();
     setDisDate(freshDate);
     setCurrDate(freshDate);
     setInputYear(freshDate.getFullYear());
+    setHour(freshDate.getHours());
+    setMinute(freshDate.getMinutes());
   }, [date]);
 
   const firstDayOfMonth = new Date(disDate.getFullYear(), disDate.getMonth(), 1).getDay();
@@ -40,7 +46,8 @@ const Calender = ({ date = "any", close, confirm, maxToday=true }) => {
   };
 
   const selectDay = (day) => {
-    setCurrDate(new Date(disDate.getFullYear(), disDate.getMonth(), day));
+    const selected = new Date(disDate.getFullYear(), disDate.getMonth(), day, hour, minute);
+    setCurrDate(selected);
   };
 
   const fullClose = () => {
@@ -81,26 +88,37 @@ const Calender = ({ date = "any", close, confirm, maxToday=true }) => {
 
     return days;
   };
-  
-  const canceled = (maxToday && currDate.getTime() > new Date().setHours(0, 0, 0, 0)) || currDate.getFullYear()>9999 || currDate.getFullYear()<1000;
+
+  const canceled =
+    (maxToday && currDate.setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)) ||
+    currDate.getFullYear() > 9999 ||
+    currDate.getFullYear() < 1000;
+
+  const confirmWithTime = () => {
+    const finalDate = new Date(currDate);
+    finalDate.setHours(hour);
+    finalDate.setMinutes(minute);
+    finalDate.setSeconds(0);
+    finalDate.setMilliseconds(0);
+    confirm(finalDate);
+  };
 
   return (
     <div className="calendar-container">
       <div className="calendar-header">
-        <button onClick={prevMonth}>&lt;</button>
+        <button type="button" onClick={prevMonth}>&lt;</button>
         <h2>
-          {disDate.toLocaleString("en-us", { month: "long" })}
-          &nbsp;
-        <input
-          type="number"
-          className="calendar-year-input"
-          value={inputYear}
-          onChange={(e) => setValueCheck(parseInt(e.target.value))}
-          min={min}
-          max={max}
-        />
+          {disDate.toLocaleString("en-us", { month: "long" })}&nbsp;
+          <input
+            type="number"
+            className="calendar-year-input"
+            value={inputYear}
+            onChange={(e) => setValueCheck(parseInt(e.target.value))}
+            min={min}
+            max={max}
+          />
         </h2>
-        <button onClick={nextMonth}>&gt;</button>
+        <button type="button" onClick={nextMonth}>&gt;</button>
       </div>
 
       <div className="calendar-grid">
@@ -112,17 +130,45 @@ const Calender = ({ date = "any", close, confirm, maxToday=true }) => {
         {renderDays()}
       </div>
 
+      {withTime && (
+        <div className="calendar-time-picker input-container">
+          <span className="time-label">Time:</span>
+          <input
+            type="number"
+            className="time-input"
+            min="0"
+            max="23"
+            value={hour}
+            onChange={(e) =>
+              setHour(Math.max(0, Math.min(23, parseInt(e.target.value) || 0)))
+            }
+          />
+          <span className="time-separator">:</span>
+          <input
+            type="number"
+            className="time-input"
+            min="0"
+            max="59"
+            value={minute}
+            onChange={(e) =>
+              setMinute(Math.max(0, Math.min(59, parseInt(e.target.value) || 0)))
+            }
+          />
+        </div>
+      )}
+
+
       <div className="calendar-actions">
         <p className="calendar-btn cancel" onClick={fullClose}>
           Cancel
         </p>
         <button
-  className={`calendar-btn confirm ${canceled ? "disactive" : ""}`}
-  onClick={() => confirm(currDate)}
-  disabled={canceled}
->
-  Confirm
-</button>
+          className={`calendar-btn confirm ${canceled ? "disactive" : ""}`}
+          onClick={confirmWithTime}
+          disabled={canceled}
+        >
+          Confirm
+        </button>
       </div>
     </div>
   );

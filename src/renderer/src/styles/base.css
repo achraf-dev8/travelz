@@ -3,7 +3,7 @@
   --grey-brown-hover: rgb(214, 237, 255);
   --primary-color: #42abfe;
   --primary-color-soft: #C5E4FD;
-  --primary-color-disactive: #92ceff;
+  --primary-color-disactive: hsl(207, 100%, 79%);
   --primary-color-hover: #1e9eff;
   --sidebar-icon-grey: #C7C7C7;
   --sidebar-text-grey: #B6B6B6;

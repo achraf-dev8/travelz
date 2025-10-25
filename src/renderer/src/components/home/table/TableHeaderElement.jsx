@@ -2,17 +2,17 @@ import { faAngleDown, faAngleUp, faArrowUp, faCaretDown, faCaretUp } from '@fort
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
-export const TableHeaderElement = ({name, sorting=true}) => {
+export const TableHeaderElement = ({name, onSortAsc, onSortDesc}) => {
   return (
     <th>
         <div className='header-container'>
             {name}
-            {sorting && <div className='arrow-container up'>
-                <div className='icon-container arrow'>
+            {(onSortAsc || onSortDesc) && <div className='arrow-container up'>
+                <div className='icon-container arrow' onClick={onSortAsc}>
                 <FontAwesomeIcon icon={faCaretUp}/>
                 </div>
                 <div className='icon-container arrow down'>
-                <FontAwesomeIcon icon={faCaretDown}/>
+                <FontAwesomeIcon icon={faCaretDown} onClick={onSortDesc}/>
                 </div>
             </div>}
         </div>

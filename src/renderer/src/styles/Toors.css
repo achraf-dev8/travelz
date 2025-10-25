@@ -1,6 +1,7 @@
 @import './base.css';
 
 .toor-filter-holder {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,9 +10,7 @@
     gap: 0.79vw; /* 12px → (12/15.11) */
 }
 
-.toor-filter-holder.range{
-    gap: 2.2vw; /* 12px → (12/15.11) */
-}
+
 
 .filter-container.selector{
     flex: 2;
@@ -37,7 +36,11 @@
 }
 
 .filter-container {
-    flex: 1;
+    flex: 0.4;
+}
+
+.filter-container.price {
+    max-width: 100px;
 }
 
 .filter-container > .text {
@@ -47,11 +50,25 @@
     margin-bottom: 0.4vw; /* 6px → (6/15.11) */
 }
 
+.filter-container.form > .text {
+    margin-bottom: 3px;
+}
+
 .full-filter-dropdown{
+    flex: 1 1 200px;
+    min-width:30px;
     width: 100%;
     border-radius: 0.53vw;
     display: flex;
     align-items: center;
+}
+
+.full-filter-dropdown.hidden{
+  flex: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .sliders-container{
@@ -103,6 +120,8 @@
 }
 
 .filter-dropdown .dropdown {
+    max-height: 150px;
+    overflow-y:auto;
     width: calc(100% + 0.13vw); 
     border-top: none;
     top: 100%;

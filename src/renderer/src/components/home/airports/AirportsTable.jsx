@@ -1,0 +1,75 @@
+import React, { useEffect, useState } from "react";
+import { Table } from '../table/Table';
+import { TableElement } from '../table/TableElement';
+import { StateDisplay } from '../table/StateDisplay';
+import { globalCheck, handleCheck } from '../../../functions/tableOperations';
+import { SelectElement } from '../table/selectElement';
+
+
+export const AirportsTable = ({operations, airports = [], sortFunctions }) => {
+
+  const [currentSortFn, setCurrentSortFn] = useState(() => sortFunctions.byState);
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [checkedIds, setcheckedIds] = useState([]);
+  
+
+    const handleSort = (sortFn, order = 'asc') => {
+    setCurrentSortFn(() => sortFn);
+    setSortOrder(order);
+  };
+
+
+  // Apply sorting
+  const sortedairports = React.useMemo(() => {
+    if (!currentSortFn) return airports;
+    setcheckedIds(prev => prev.filter(id => airports.some(h => h.id === id)));
+    return [...airports].sort(currentSortFn(sortOrder === 'desc'));
+  }, [airports, currentSortFn, sortOrder]);
+
+  const lines = sortedairports.map((item, i) => (
+    <tr key={i}>
+      <td><input checked={checkedIds.includes(sortedairports[i].id)} 
+      onChange={() => handleCheck(sortedairports[i], setcheckedIds)} type="checkbox" /></td>
+      <TableElement text={item.name} />
+      <TableElement text={item.location} />
+      <TableElement text={item.phone_number} />
+      <TableElement text={`${item.expenses} ${item.expenses_currency}`} />
+      <td><StateDisplay text={item.state} /></td>
+      <td><SelectElement operations = {operations} id={sortedairports[i].id}/></td>
+    </tr>
+  ));
+
+  return (
+    <Table operations = {operations}  selectedItems={checkedIds}
+      globalCheck = {() => globalCheck(setcheckedIds, airports)}
+      lines={lines}
+      headerItems={[
+        { name: "Name",  sorting: {
+            asc: () => handleSort(sortFunctions.byName, 'asc'),
+            desc: () => handleSort(sortFunctions.byName, 'desc'),
+          }
+        },
+        {
+          name: "Location",
+        },
+        {
+          name: "Phone Number",
+        },
+        {
+        name: "Expenses",
+          sorting: {
+            asc: () => handleSort(sortFunctions.byExpenses, 'asc'),
+            desc: () => handleSort(sortFunctions.byExpenses, 'desc'),
+          }
+        },
+        {
+        name: "State",
+          sorting: {
+            asc: () => handleSort(sortFunctions.byState, 'asc'),
+            desc: () => handleSort(sortFunctions.byState, 'desc'),
+          }
+        }
+      ]}
+    />
+  );
+}

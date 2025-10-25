@@ -1,12 +1,41 @@
-import React, { useState } from 'react'
+import React from 'react';
 
+export const NumberInputElement = ({
+  display,
+  name,
+  min = 1,
+  max = null,
+  step = 'any', // allows decimal input
+  onChange,
+  value,
+  onBlur,
+  touched, hidden = false, error
+}) => {
+  const handleChange = (event) => {
+    const newValue = event.target.value;
 
-export const NumberInputElement = ({name, min=1, max=null, onChange, value}) => {
+    // Prevent negative values
+    if (Number(newValue) < 0) return;
+
+    onChange(event); // let Formik handle it
+  };
 
   return (
-    <div className='input-container number'>
-        <p>{name}</p>
-        <input type='number' value={value} max={max} min={min} onChange={(event)=>onChange(event.target.value)}/>
+    <div className={`input-container  ${hidden ? 'hidden' : 'number'}`}>
+      {display && (<p>{display}</p>)}
+      <input className={`${touched && error ? "input-error" : ""}`}
+        name={name}
+        type='number'
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={handleChange}
+        onBlur={onBlur}
+        touched={touched}
+      />
+      <p className='error'>{touched && error}</p>
+
     </div>
-  )
-}
+  );
+};

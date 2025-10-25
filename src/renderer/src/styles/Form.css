@@ -1,0 +1,36 @@
+.toor-form-section{
+    width: 100%;
+    display: flex;
+}
+
+.form-section-header{
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.form-section-header.first{
+    margin-top: 0;
+}
+
+.form-section-header-full-container{   
+    display: flex;
+   align-items : center;
+    gap: 5px;
+    font-size: 12px;
+    margin-top: 25px;  
+}
+
+.form-section-header-full-container.no-margin{
+    margin-top: 0;
+}
+
+.form-section-header-full-container label{
+ display: flex;
+   align-items : center;
+    gap: 0.1rem;
+}
+
+.form-section-header-full-container label input{
+    cursor: pointer;
+}
+

@@ -23,25 +23,24 @@
 
 
 .navigation-bar .title {
-  font-size: 1.6vw; 
   font-weight: 400;
 }
 
 .navigation-bar .title-holder .sub-page{
   color: grey;
-  font-size: 0vw; 
   font-weight: 400;
   margin-right: 5px;
   transition: 0.3s linear;
 }
 
 .navigation-bar .title-holder .sub-page .link{
+  font-size: 0.8vw;
   transition: 0.3s;
   cursor: pointer;
 }
 
 .navigation-bar .title-holder .sub-page .link:hover{
-  font-size: 0.82vw;
+  font-size: 1vw;
   color: var(--primary-color);
   text-decoration: underline;
 }
@@ -51,7 +50,7 @@
 }
 
 .navigation-bar .title-holder .current{
-    font-size: 1.6vw; 
+    font-size: 1.4vw; 
   font-weight: 400;
 }
 
@@ -222,3 +221,20 @@
 .navigation-buttons.disactive {
   transform: scale(0);
 }
+
+    /* styles.css */
+    .spinner {
+      border: 4px solid #f3f3f3; /* Light grey */
+      border-top: 4px solid var(--primary-color); /* Blue */
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      margin-inline: auto;
+      margin-block: 3px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }

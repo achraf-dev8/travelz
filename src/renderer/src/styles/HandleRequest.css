@@ -1,0 +1,55 @@
+.loading_screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(50%);
+  height: 100%; /* Full screen */
+}
+
+.loading_screen.empty{
+  transform: translateY(20%);
+}
+
+.loading_screen.server{
+  transform: translateY(100%);
+}
+
+.loading_screen.client{
+  transform: translateY(100%);
+}
+
+.loading_container {
+  width: 350px;
+  height: 350px;
+  margin-bottom: 20px;
+}
+
+.loading_container.network{
+  width: 200px;
+  height: 200px;
+}
+
+.loading_container.server{
+  width: 100px;
+  height: 100px;
+}
+
+.loading_container.client{
+  width: 100px;
+  height: 100px;
+}
+
+.loading_container.empty{
+  width: 300px;
+  height: 300px;
+}
+
+
+
+.loading_screen .error-text{
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}

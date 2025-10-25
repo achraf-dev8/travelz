@@ -2,8 +2,9 @@ import { faCalendarAlt, faCalendarDay, faCalendarDays } from '@fortawesome/free-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useRef, useState } from 'react'
 import Calender from '../home/Calender'
+import { formatDate } from '../../functions/dates'
 
-export const DatePickerCard = ({ name, setDate, date }) => {
+export const DatePickerCard = ({ name, setDate, date, hidden }) => {
   const refDialog = useRef(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -24,17 +25,8 @@ export const DatePickerCard = ({ name, setDate, date }) => {
     toggleDialog()
   }
 
-  function formatDate(date) {
-    if (date == 'any' || !date) return '';
-    const d = new Date(date);
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = d.getFullYear();
-    return `${day}/${month}/${year}`;
-  }
-
   return (
-    <div className='date-picker-card-container'>
+    <div className={`date-picker-card-container ${hidden ? 'hidden' : ''}`}>
       <p>{name}</p>
       <div className='input-container date-picker-card' onClick={(e) => {
         if (e.currentTarget === e.target) {

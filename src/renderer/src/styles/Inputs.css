@@ -2,8 +2,15 @@
 
 
 .date-picker-card-container{
-  flex: 1;
+  flex: 2;
+  transition: all 0.4s ease;
+}
 
+.date-picker-card-container.hidden{
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .date-picker-card{
@@ -13,7 +20,7 @@
     border: 1.4px var(--grey-brown) solid;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.4s;
     display: flex;
     align-items: center;
     padding-inline: 18px;
@@ -32,17 +39,85 @@
 
 .inputs-holder{
     display: flex;
+    justify-content: center;
     gap: 1vw;
-    margin-bottom: 18px;
+    margin-bottom: 5px;
+    align-items: start;
+}
+
+.documents-holder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 5px;
+}
+
+.documents-holder.hidden {
+  gap : 0;
+}
+
+
+.inputs-holder.hidden{
+  gap: 0;
 }
 
 .input-container.number{
-    flex: none;
-    min-width: 150px;
+   flex: 1;
 }
 
-.input-container{
-    flex: 1;
+
+/*implation*/
+.price-input-container {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  flex: 1 1 250px;
+  transition: all 0.4 ease;
+}
+
+.full-container.hidden{
+    flex: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.full-container{
+  flex: 1 1 250px;
+  display:'block';
+}
+
+
+.price-input-container.hidden{
+  flex: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.input-container {
+  position: relative;
+  flex: 2;
+  transition: all 0.4s ease;
+}
+
+
+
+.input-container.hidden {
+  flex: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+.input-container.number.hidden {
+  flex: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .input-container .error{
@@ -61,11 +136,30 @@
     font-size: 1.1vw;
     padding-block: 0.6vw;
     padding-inline: 18px;
-    transition: border-color 0.5s;
+    transition: border-color 0.4s;
+}
+
+.input-container .fixed-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    width: 100%;
+    border: 1.4px var(--grey-brown) solid;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.1vw;
+    padding-block: 0.6vw;
+    padding-inline: 18px;
+    background-color: white;
 }
 
 .input-container input:focus{
      border: 1.8px var(--primary-color) solid; 
+}
+
+.input-container input.input-error{
+     border: 1.8px var(--red) solid; 
 }
 
 .input-container input.empty{
@@ -74,4 +168,82 @@
     pointer-events: none;
     border: none;
     
+}
+
+.input-container input.no-radius {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+/*implation*/
+.input-autocomplete {
+  position: relative;
+  flex: 2;
+  transition: all 0.4s ease;
+}
+
+
+.input-autocomplete.hidden {
+  flex: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  max-height: 200px;
+  background: white;
+  border: 1px solid var(--primary-color);
+  z-index: 9999;
+  border-radius: 0 0 10px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.input-autocomplete.error .autocomplete-list {
+  top: 80%;
+}
+
+.autocomplete-item {
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.autocomplete-item.saved{
+  color: var(--primary-color);
+}
+
+.autocomplete-item:hover {
+  background-color: #f0f0f0;
+}
+
+input[type = "checkbox"] {
+    aspect-ratio: 1/1;
+    height: 0.99vw;
+    /* 15px → (15/15.11) */
+    cursor: pointer;
+}
+
+
+.apply-all-text{
+    font-size: 13px;
+    font-weight: 500;
+    color : #555;
+    margin-top: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.apply-all-text:hover{
+  font-weight: 800;
+  color : var(--primary-color);
 }

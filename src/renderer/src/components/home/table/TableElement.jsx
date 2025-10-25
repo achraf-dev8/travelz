@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-export const TableElement = ({ clickable, text }) => {
+export const TableElement = ({ clickable, text = null }) => {
   const [showTooltip, setShowTooltip] = useState("");
   const timeoutRef = useRef(null);
 
@@ -15,11 +15,15 @@ export const TableElement = ({ clickable, text }) => {
     setShowTooltip("");
   };
 
-  return (
-    <td className={clickable ? 'clickable' : ''} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+  text = text == '' ? null : text
 
-      <p>{text}</p>
-      <span className={`custom-tooltip ${showTooltip}`}>{text}</span>
+  return (
+    <td className={clickable && text != null && text != undefined
+     ? 'clickable' : ''} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+
+      <p onClick={clickable} style={{color : text == null ? 'grey': null}}>{text == null ||text == undefined  ? 'N/A' : text}    
+      </p>
+      <span  className={`custom-tooltip ${showTooltip}`}>{text == null ||text == undefined  ? 'N/A' : text}</span>
     </td>
   );
 };

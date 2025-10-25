@@ -1,69 +1,94 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Home.css';
+import '../styles/Dialogs.css';
 import { SideBar } from '../components/home/SideBar';
 import { NavigationBar } from '../components/home/navigation_bar/NavigationBar';
-import { Toors } from './Home/Toors';
-import { Travelers } from './Home/travelers';
-import { Locations } from './Home/Locations';
-import { AddTraveler } from './Home/travelers/AddTraveler';
-import { AddFamily } from './Home/travelers/AddFamily';
-import { TravelerInfo } from './Home/travelers/TravelerInfo';
-import { EditDialog } from '../components/home/info/EditDialog';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { toursPath } from '../routes';
+import { ScrollContext } from '../tools/ScrollContext';
+import { apiGet } from '../functions/api';
+import { useAppStore } from '../store';
 
 function Home() {
-
-  const [currentPage, setCurrentPage] = useState(['Dashboard']);
+  const {pages} = useAppStore()
   const [navbarHidden, setNavbarHidden] = useState('top');
-  const lastScrollPosition = useRef(0);
-  const homeAreaRef = useRef(null);
   const [canGoBack, setCanGoBack] = useState(false);
-  const navigate = useNavigate();
+  const homeAreaRef = useRef(null);
+  const lastScrollPosition = useRef(0);
+  // 🔁 Enable back button if history allows
 
   useEffect(() => {
-      setCanGoBack(window.history.length > 1);
-  }, [currentPage]);
+    setCanGoBack(window.history.length > 1);
+  }, [pages]);
 
-  function goBack(){
-    navigate(-1)
-    
-  }
-
+  // 🎯 Update navbar based on scroll direction
   useEffect(() => {
     const scrollContainer = homeAreaRef.current;
+    if (!scrollContainer) return;
+
     const handleScroll = () => {
-      const currentScrollPosition = homeAreaRef.current.scrollTop;
-      if (currentScrollPosition <= 0) {
-        setNavbarHidden('top');
-        return;
-      }
-      setNavbarHidden(lastScrollPosition.current < currentScrollPosition ? 'hidden' : 'active');
-      lastScrollPosition.current = currentScrollPosition;
+      const currentScroll = scrollContainer.scrollTop;
+      const isScrollingDown = lastScrollPosition.current < currentScroll;
+
+      setNavbarHidden(currentScroll <= 0 ? 'top' : (isScrollingDown ? 'hidden' : 'active'));
+      lastScrollPosition.current = currentScroll;
     };
 
     scrollContainer.addEventListener('scroll', handleScroll);
     return () => scrollContainer.removeEventListener('scroll', handleScroll);
   }, []);
 
-  function setCurrentPageEvent(page) {
-
-    setCurrentPage(page);
-    if (page[page.length - 1] == 'Tours') navigate(toursPath)
-      else navigate('/')
-  }
-
+  // 📌 Provide scroll control to any child
+  const scrollMethods = {
+    scrollToBottom: () => {
+      const container = homeAreaRef.current;
+      if (container) {
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: 'smooth',
+        });
+      }
+    },
+    scrollToTop: () => {
+      const container = homeAreaRef.current;
+      if (container) {
+        container.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    },
+    scrollTo: (y) => {
+      const container = homeAreaRef.current;
+      if (container) {
+        container.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    },
+  };
   return (
-    <div className="home-screen">
-      <SideBar currentPage={currentPage[0]} setCurrentPageEvent={setCurrentPageEvent} />
-      <div className="home-area" ref={homeAreaRef}>
-        <NavigationBar canGoBack={canGoBack} hidden={navbarHidden} page={["Travelers", "Add Traveler", "Traveler Info"]} />
-        <div className="home-content">
-          <Outlet />
+    
+    <ScrollContext.Provider value={scrollMethods}>
+      <div className="home-screen">
+        <SideBar/>
+
+        <div className="home-area" ref={homeAreaRef}>
+          <NavigationBar
+            goBack={()=> navigate(-1)}
+            canGoBack={canGoBack}
+            hidden={navbarHidden}
+            page={pages}
+          />
+
+          <div className="home-content">
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
+    </ScrollContext.Provider>
+    
   );
+
+ /*
+ return <ConfrimDialog/>
+ */
 }
 
 export default Home;
+

@@ -41,8 +41,9 @@
 }
 
 .add-button {
+    font-size: 15px;
     gap: 1.85vw;
-    max-width: 13vw;
+    max-width: 16vw;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -51,10 +52,11 @@
     font-weight: 500;
     background-color: var(--primary-color);
     color: white;
-    padding: 0.66vw 1.13vw; /* 10px → 0.66vw, 17px → 1.13vw */
+    padding: 0.66vw 0vw; /* 10px → 0.66vw, 17px → 1.13vw */
     border-radius: 0.66vw; /* 10px → (10/15.11) */
     transition: 0.3s;
 }
+
 
 .add-button.simple { 
     color: var(--primary-color);
@@ -66,7 +68,7 @@
 }
 
 .add-button.simple.disactive { 
-    opacity: 0.5;
+   opacity: 0.5;
     cursor: default;
 }
 
@@ -85,20 +87,27 @@
 }
 
 .add-button.confirm{
+  max-width: none;
   padding-inline: 2vw;
   font-weight: 600;
   font-size: 17px;
 }
 
+.add-button.confirm.add-tour {
+  margin-top: 20px;
+  padding-inline: 2vw;
+  font-size: 19px;
+}
+
+
+
 .info-confirm-holder{
+  margin-top: 15px;
     display: flex;
     gap: 20px;
     justify-content: end;
 }
 
-.add-button.confirm{
-  max-width: none;
-}
 
 .add-button.confirm.disactive{
   background-color: var(--primary-color-disactive);
@@ -110,16 +119,25 @@
   transform: scale(1);
 }
 
-.items-added-cards{
+.items-added-cards.original {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
   margin-bottom: 0;
   transition: 0.5s;
 }
 
+.items-added-cards {
+  display: block;
+}
+
 .items-added-cards.not-empty{
- margin-bottom: 20px;
+ margin-bottom: 15px;
 }
 
 .items-added-cards .item-added-card{
+
+    flex: 1 1 calc(100%);
     height: fit-content;
     background-color: white;
     border: 1.4px var(--grey-brown) solid;
@@ -130,9 +148,9 @@
     justify-content: space-between;
     font-weight: 500;
     padding-block: 4px;
-    margin-bottom: 12px;
+    margin-bottom: 0px;
     transition: border-color 0.5s;
-    width: 100%;
+    max-width: calc(50% - 10px);
 }
 
 
@@ -180,8 +198,9 @@
 .icon-container.remove{
     background-color: transparent;
     border-radius: 100%;
-    font-size: 18px;
+    font-size: 14px;
     height: 80%;
+    padding: 7px;
 }
 
 .icon-container.blank{

@@ -2,10 +2,13 @@ import React, { act, useRef } from 'react'
 import { faAngleDown, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
-export const FilterDropDown = ({title, active, setFilterEvent, items = [], onClick = ()=>{}}) => {
+ 
+export const FilterDropDown = ({remove = true,
+  title, active, setFilterEvent, items = [], onClick = ()=>{}, document = false, hidden = false}) => {
   const ref = useRef(null);
+  const rRemove = remove && items.length == 0 && !document &&  (active != "any" && active != "Undefined")
   return (
-    <div className='full-filter-dropdown'>
+    <div className={`full-filter-dropdown ${hidden ? 'hidden': ''}`}>
         <div className='filter-dropdown' onClick={onClick}>
             <div className={`tour-filter`}>
                 <p>{active}</p>
@@ -16,8 +19,7 @@ export const FilterDropDown = ({title, active, setFilterEvent, items = [], onCli
             </ul>
         </div> 
         <div>
-          {items.length == 0 && active != "any" && 
-                    <div className='icon-container remove' onClick={setFilterEvent}>
+          {rRemove && <div className='icon-container remove' onClick={setFilterEvent}>
                         <FontAwesomeIcon icon={faXmark} className="icon" />
                     </div>
           }

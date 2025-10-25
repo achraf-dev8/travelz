@@ -1,4 +1,6 @@
 @import './base.css';
+@import './Form.css';
+@import './Inputs.css';
 
 *{
     margin: 0;
@@ -14,6 +16,7 @@
     position: absolute;
     border: 0.1vw var(--grey-brown) solid;
     border-radius: 0.53vw;
+   
 }
 
 dialog{

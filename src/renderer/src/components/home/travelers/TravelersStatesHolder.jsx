@@ -3,18 +3,16 @@ import { StateCard } from '../filters/StateCard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faSliders } from '@fortawesome/free-solid-svg-icons'
 import { AddButton } from '../add/AddButton'
-import { SearchField } from '../SearchField'
+import { SearchField } from '../main/SearchField'
+import { useNavigate } from 'react-router-dom'
 
 
-export const TravelersStatesHolder = ({ active, travelerStateEvent, state }) => {
+export const TravelersStatesHolder = ({setSearch, searchVal}) => {
+  const navigate = useNavigate()
   return (
     <div className="states-holder">
-      <div className='states-row'>
-        <StateCard text="Travelers" active={active} event={travelerStateEvent} />
-        <StateCard text="Families" active={active} event={travelerStateEvent} />
-      </div>
-      <SearchField />
-      <AddButton state={`Add ${state}`} noChange={true} />
+      <SearchField searchValue={searchVal} setSearch={setSearch}/>
+      <AddButton state={`Add Traveler`} noChange={true} onClick={()=>navigate('/add-traveler')}/>
     </div>
 
   )

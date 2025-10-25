@@ -6,10 +6,21 @@
     background-color: white;
 }
 
-.info-card .info-card-holder{
+
+
+
+.info-card .info-card-holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.info-card .info-row{
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 36px;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
 }
 
 .info-card .info-card-holder:last-child{
@@ -23,11 +34,7 @@
     margin-left: 12px;
 }
 
-.info-card .info-row{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+
 
 .info-card .info-row .group{
     display: flex;

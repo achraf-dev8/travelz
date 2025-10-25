@@ -2,7 +2,7 @@ import { FilterDropDown } from './FilterDropDown';
 import React, { useRef, useState } from 'react';
 import Calender from '../Calender';
 
-function RangeToorFilter({ title, from, to, setFilterEvent }) {
+export const  RangeToorFilter = ({ title, from, to, setFilterEvent, maxToday = false, remove = true }) => {
   const fromFormated = from !== "any" ? formatDate(from) : "any";
   const toFormated = to !== "any" ? formatDate(to) : "any";
 
@@ -13,6 +13,7 @@ function RangeToorFilter({ title, from, to, setFilterEvent }) {
   const [toDialogOpen, setToDialogOpen] = useState(false);
 
   function toggleDialog(ref, isFrom = true) {
+
     if (!ref.current) return;
 
     if (ref.current.hasAttribute("open")) {
@@ -76,11 +77,12 @@ function RangeToorFilter({ title, from, to, setFilterEvent }) {
       <p className="text">{title}</p>
       <div className="selector-filters-holder">
         <p className="text">From</p>
-        <FilterDropDown
+        <FilterDropDown 
           onClick={() => toggleDialog(fromRefDialog, true)}
           title={title}
           active={fromFormated}
           setFilterEvent={removeFrom}
+          remove={remove}
         />
 
         <dialog
@@ -92,11 +94,12 @@ function RangeToorFilter({ title, from, to, setFilterEvent }) {
           ref={fromRefDialog}
         >
           <Calender
+          
             key={fromDialogOpen ? "open" : "closed"}
             date={from}
             close={() => toggleDialog(fromRefDialog, true)}
             confirm={confirmFrom}
-            maxToday={false}
+            maxToday={maxToday}
           />
         </dialog>
 
@@ -106,6 +109,7 @@ function RangeToorFilter({ title, from, to, setFilterEvent }) {
           title={title}
           active={toFormated}
           setFilterEvent={removeTo}
+          remove={remove}
         />
 
         <dialog
@@ -117,6 +121,7 @@ function RangeToorFilter({ title, from, to, setFilterEvent }) {
           ref={toRefDialog}
         >
           <Calender
+            
             key={toDialogOpen ? "open" : "closed"}
             date={to}
             close={() => toggleDialog(toRefDialog, false)}
@@ -128,5 +133,3 @@ function RangeToorFilter({ title, from, to, setFilterEvent }) {
     </div>
   );
 }
-
-export default RangeToorFilter;
